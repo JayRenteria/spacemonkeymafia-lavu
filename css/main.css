@@ -7,7 +7,7 @@
 /* INPUTS */
 .group {
 	position: relative;
-	margin-bottom: 45px;
+	margin-bottom: 20px;
 }
 input {
 	font-size: 18px;
@@ -21,8 +21,7 @@ input:focus {
 	outline: none;
 }
 /* LABEL position and transition */
-input:focus ~ label,
-input:valid ~ label {
+input:focus ~ label {
 	top: -20px;
 	font-size: 14px;
 	color: #5264AE;
@@ -33,7 +32,7 @@ label {
 	font-weight: normal;
 	position: absolute;
 	left: 5px;
-	top: 10px;
+	top: 20px;
 	transition: 0.2s ease all;
 }
 
