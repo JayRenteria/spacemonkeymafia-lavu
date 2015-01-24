@@ -47,23 +47,30 @@ label {
 
 /* Math functions */
 /* Clock */
+
+#clock,
+#clock ul {
+	height: 200px;
+	width: 200px;
+}
+#clock ul .hour {
+	position: absolute;
+	height: 190px;
+	top: 10px;
+	left: 90px;
+	font-size: 0.8em;
+}
+
 #clock {
+	/*height: 400px;*/
+	/*width: 400px;*/
 	position: relative;
-	height: 400px;
-	width: 400px;
 	top: 50%;
 }
 #clock ul {
-	height: 400px;
-	width: 400px;
+	/*height: 400px;*/
+	/*width: 400px;*/
 	border-radius: 50%;
-}
-#clock ul .hour {
-	height: 380px;
-	font-size: 20px;
-	position: absolute;
-	top: 10px;
-	left: 195px;
 }
 #clock ul .hour span {
 	display: inline-block;
