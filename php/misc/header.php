@@ -9,3 +9,4 @@
 		<title>SpaceMonkeyMafia</title>
 	</head>
 	<body>
+		<div class="container-fluid">
