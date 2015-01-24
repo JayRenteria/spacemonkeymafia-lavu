@@ -1,5 +1,5 @@
 <?php
-
+/**var_dump($_POST);
 function post_to_api($postvars)
 {
 $ch = curl_init();
@@ -14,6 +14,15 @@ return $response;
 }
 
 post_to_api("dataname=demo_lh15_1_03&key=PnbL6By6ATVEiFAE5sPa&token=3EkwWqhBV6JM5TfZvbMQ&table=tables")
+**/
+$guestTables = array(
+	array("Table 1", 2),
+	array("Table 2", 2),
+	array("Table 3", 4),
+	array("Table 4", 4),
+	array("Table 5", 6),
+);
+
 
 ?>
 	
