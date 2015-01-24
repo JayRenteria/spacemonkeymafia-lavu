@@ -1,7 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: florian
- * Date: 1/24/15
- * Time: 8:34 AM
- */
+
+include_once("php/misc/header.php");
+?>
+
+		<h1>test22</h1>
+
+<?php
+include_once("php/misc/footer.php");
+?>
