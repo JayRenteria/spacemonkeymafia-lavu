@@ -14,7 +14,7 @@
 		<label>Phone</label>
 	</div>
 	<div class="group">
-		<input type="date" name="date" value=""><br>
+		<input type="date" name="date" value="Select a Date"><br>
 	</div>
 	<div class="group">
 		<select name="Time" class="form-control">

@@ -28,7 +28,7 @@ input:focus {
 input:focus ~ label {
 	top: -20px;
 	font-size: 14px;
-	color: #5264AE;
+	color: #99bc08;
 }
 label {
 	color: #999;
