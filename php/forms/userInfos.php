@@ -1,13 +1,16 @@
 <form action="" method="post">
 
 	<div class="group">
-		<label>Name:</label><input type="text" name="name"required="">
-		</div>
+		<input type="text" name="name"required="">
+		<label>Name:</label>
+	</div>
 	<div class="group">
-		<label>Email:</label><input type="text" name="email" required><br>
-		</div>
+		<input type="text" name="email" required><br>
+		<label>Email:</label>
+	</div>
 	<div class="group">
-		<label>Phone:</label><input type="text" name="phone" required><br>
+		<input type="text" name="phone" required><br>
+		<label>Phone:</label>
 	</div>
 	Date<input type="date" name="date" required><br>
 	<select name="Time" required>
