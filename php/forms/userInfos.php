@@ -1,6 +1,11 @@
 <form action="" method="post">
-	Name: <input type="text" name="name"required=""><br>
-	E-mail: <input type="text" name="email" required><br>
+
+	<div class="group">
+		<label>Name:</label><input type="text" name="name"required="">
+		</div>
+	<div class="group">
+		<label>Email:</label><input type="text" name="email" required><br>
+		</div>
 	Date<input type="date" name="date"><br>
 	<select name="Time">
 		<option value="7:00AM">7:00AM</option>
