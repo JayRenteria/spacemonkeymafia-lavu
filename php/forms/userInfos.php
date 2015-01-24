@@ -5,14 +5,14 @@
 		<label>Name:</label>
 	</div>
 	<div class="group">
-		<input type="text" name="email" required><br>
+		<input type="text" name="email" required>
 		<label>Email:</label>
 	</div>
 	<div class="group">
-		<input type="text" name="phone" required><br>
+		<input type="text" name="phone" required>
 		<label>Phone:</label>
 	</div>
-	Date<input type="date" name="date" required><br>
+	Date<input type="date" name="date" required>
 	<select name="Time" required>
 		<option value="">Select a Time</option>
 		<option value="7:00AM">7:00AM</option>
@@ -40,6 +40,6 @@
 		<option value="6:00PM">6:00PM</option>
 		<option value="6:30PM">6:30PM</option>
 	</select><br>
-	<input type="submit">
+	<input type="submit" value="Reserve!">
 
 </form>

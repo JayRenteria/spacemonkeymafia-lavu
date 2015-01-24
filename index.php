@@ -10,7 +10,6 @@ include_once("php/misc/header.php");
 	</div>
 	<div class="col-xs-4">
 
-		<h2>clock and table layout</h2>
 		<?php include_once "php/misc/clock.php"; ?>
 	</div>
 	<div class="col-xs-4">
