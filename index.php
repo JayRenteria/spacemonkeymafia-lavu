@@ -19,5 +19,10 @@ include_once("php/misc/header.php");
 
 
 <?php
+
+include_once("php/forms/userInfos.php");
+?>
+
+<?php
 include_once("php/misc/footer.php");
 ?>
