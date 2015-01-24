@@ -10,13 +10,21 @@ include_once("php/misc/header.php");
 	</div>
 	<div class="col-xs-3">
 
-		<h2>clock and table layout CODE:
-			<div style="margin: 15px 0px 0px; display: inline-block; text-align: center; width: 200px;">
-				<div id="clock">
-					<a href="" style="text-decoration: none; font-size: 13px; color: rgb(153, 188, 8);"> </a>
+		<h2>clock and table layout</h2>
+		<div class="whole-page vertical-middle">
+			<div class="vertical-middle__child">
+
+				<div class="clock">
+					<ul class="clock__marks"></ul>
+					<div class="clock__hands">
+						<div class="clock__hand clock__hand--hour"></div>
+						<div class="clock__hand clock__hand--minute"></div>
+						<div class="clock__hand clock__hand--second"></div>
+					</div>
 				</div>
+
 			</div>
-		</h2>
+		</div>
 	</div>
 	<div class="col-xs-5">
 		<?php include_once "php/forms/availableTimes.php"; ?>

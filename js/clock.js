@@ -1,119 +1,51 @@
-function AC_AddExtension(src, ext)
-{
-	if (src.indexOf('?') != -1)
-		return src.replace(/\?/, ext+'?');
-	else
-		return src + ext;
-}
-function AC_Generateobj(objAttrs, params, embedAttrs, parElement)
-{
-	var str = '<object ';
-	for (var i in objAttrs)
-		str += i + '="' + objAttrs[i] + '" ';
-	str += '>';
-	for (var i in params)
-		str += '<param name="' + i + '" value="' + params[i] + '" /> ';
-	str += '<embed ';
-	for (var i in embedAttrs)
-		str += i + '="' + embedAttrs[i] + '" ';
-	str += ' ></embed></object>';
-	if( parElement == "" ) {
-		document.write(str);
-	} else {
-		if( document.getElementById(parElement) ) document.getElementById(parElement).innerHTML = str;
-	}
-}
-function loadFlash() {
-	var ret =
-		AC_GetArgs
-		(  arguments, ".swf", "movie", "clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
-			, "application/x-shockwave-flash"
-		);
-	AC_Generateobj(ret.objAttrs, ret.params, ret.embedAttrs, '');
-}
-function AC_GetArgs(args, ext, srcParamName, classid, mimeType){
-	var ret = new Object();
-	ret.embedAttrs = new Object();
-	ret.params = new Object();
-	ret.objAttrs = new Object();
-	for (var i=0; i < args.length; i=i+2){
-		var currArg = args[i].toLowerCase();
-		switch (currArg){
-			case "classid":
-				break;
-			case "pluginspage":
-				ret.embedAttrs[args[i]] = args[i+1];
-				break;
-			case "src":
-			case "movie":
-				args[i+1] = AC_AddExtension(args[i+1], ext);
-				ret.embedAttrs["src"] = args[i+1];
-				ret.params[srcParamName] = args[i+1];
-				break;
-			case "onafterupdate":
-			case "onbeforeupdate":
-			case "onblur":
-			case "oncellchange":
-			case "onclick":
-			case "ondblClick":
-			case "ondrag":
-			case "ondragend":
-			case "ondragenter":
-			case "ondragleave":
-			case "ondragover":
-			case "ondrop":
-			case "onfinish":
-			case "onfocus":
-			case "onhelp":
-			case "onmousedown":
-			case "onmouseup":
-			case "onmouseover":
-			case "onmousemove":
-			case "onmouseout":
-			case "onkeypress":
-			case "onkeydown":
-			case "onkeyup":
-			case "onload":
-			case "onlosecapture":
-			case "onpropertychange":
-			case "onreadystatechange":
-			case "onrowsdelete":
-			case "onrowenter":
-			case "onrowexit":
-			case "onrowsinserted":
-			case "onstart":
-			case "onscroll":
-			case "onbeforeeditfocus":
-			case "onactivate":
-			case "onbeforedeactivate":
-			case "ondeactivate":
-			case "type":
-			case "codebase":
-				ret.objAttrs[args[i]] = args[i+1];
-				break;
-			case "width":
-			case "height":
-			case "align":
-			case "vspace":
-			case "hspace":
-			case "class":
-			case "title":
-			case "accesskey":
-			case "name":
-			case "id":
-			case "tabindex":
-				ret.embedAttrs[args[i]] = ret.objAttrs[args[i]] = args[i+1];
-				break;
-			default:
-				ret.embedAttrs[args[i]] = ret.params[args[i]] = args[i+1];
+/* Setting current time + fix for inactive tab */
+
+var radius = 6;
+
+$(document).ready(function() {
+	for(var i=0; i<60; i++)
+		$('.clock__marks').append('<li></li>');
+
+	var currentTime = new Date();
+	var second = currentTime.getSeconds() * radius;
+	var minute = currentTime.getMinutes() * radius + Math.floor(second / (radius * 10) * 10) / 10;
+	var hour = currentTime.getHours() * radius * 5 + Math.floor(minute / (radius * 2) * 10) / 10;
+
+	setClockHands(second, minute, hour);
+});
+
+
+function setClockHands(second, minute, hour){
+	var secondElm = $('.clock__hand--second');
+	var minuteElm = $('.clock__hand--minute');
+	var hourElm = $('.clock__hand--hour');
+
+	secondElm.css('transform', 'rotate(' + second + 'deg)');
+	minuteElm.css('transform', 'rotate(' + minute + 'deg)');
+	hourElm.css('transform', 'rotate(' + hour + 'deg)');
+
+	var interval = 1000; //1 second
+	var before = new Date();
+
+	setInterval(function(){
+		var now = new Date();
+		var elapsedTime = now.getTime() - before.getTime(); //Fix calculating in inactive tabs
+		var delay = Math.round(elapsedTime/interval);
+
+		second += radius * delay;
+		for(var i=0; i<delay; i++){
+			if( ((second - i) * radius) % (radius * 5) === 0 ){
+				minute += 0.5;
+				if( minute % radius === 0 ){
+					hour += 0.5;
+				}
+			}
 		}
-	}
-	//ret.objAttrs["classid"] = classid;
-	if (mimeType) ret.embedAttrs["type"] = mimeType;
-	return ret;
+
+		secondElm.css('transform', 'rotate(' + second + 'deg)');
+		minuteElm.css('transform', 'rotate(' + minute + 'deg)');
+		hourElm.css('transform', 'rotate(' + hour + 'deg)');
+
+		before = new Date();
+	}, interval);
 }
-loadFlash('codebase','http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0',
-	'width','200','height','200',
-	'src','http://localtimes.info/acsw/design26?ggh=17&gid=&&ggm=55&rnd=0&gha=0&fna=&ghb=1&ghf=0&gbc=0x2b2b2b&gfc=0xf4f4f2&gtc=0x99bc08&gnu=http://localtimes.info/europe/United Kingdom/London/widget/',
-	'allowScriptAccess','always','quality','high','wmode','transparent','pluginspage','http://www.macromedia.com/go/getflashplayer',
-	'movie','http://localtimes.info/acsw/design26?ggh=17&gid=&&ggm=55&rnd=0&gha=0&fna=&ghb=1&ghf=0&gbc=0x2b2b2b&gfc=0xf4f4f2&gtc=0x99bc08&gnu=http://localtimes.info/europe/United Kingdom/London/widget/');
