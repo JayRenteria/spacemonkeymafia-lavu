@@ -3,6 +3,8 @@
 	margin-left: 2em;
 	margin-right: 2em;
 }
+
+/* INPUTS */
 .group {
 	position: relative;
 	margin-bottom: 45px;
@@ -33,4 +35,19 @@ label {
 	left: 5px;
 	top: 10px;
 	transition: 0.2s ease all;
+}
+
+/* LIST */
+.list-group-item:hover {
+	background-color: #bce8f1;
+}
+
+/* CLOCK */
+#clock {
+	display: inline-block;
+	padding: 2px 4px;
+	margin: 0px 0px 5px;
+	border: 1px solid rgb(204, 204, 204);
+	text-align: center;
+	background-color: transparent;
 }
