@@ -6,8 +6,12 @@
 	<div class="group">
 		<label>Email:</label><input type="text" name="email" required><br>
 		</div>
-	Date<input type="date" name="date"><br>
-	<select name="Time">
+	<div class="group">
+		<label>Phone:</label><input type="text" name="phone" required><br>
+	</div>
+	Date<input type="date" name="date" required><br>
+	<select name="Time" required>
+		<option value="">Select a Time</option>
 		<option value="7:00AM">7:00AM</option>
 		<option value="7:30AM">7:30AM</option>
 		<option value="8:00AM">8:00AM</option>
