@@ -1,7 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: David
- * Date: 1/24/2015
- * Time: 2:29 PM
- */
+$guestTables = array(
+	array("Table 1", 2),
+	array("Table 2", 2),
+	array("Table 3", 4),
+	array("Table 4", 4),
+	array("Table 5", 6),
+);
+?>
