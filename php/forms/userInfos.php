@@ -5,18 +5,18 @@
 		<label>Name</label>
 	</div>
 	<div class="group">
-		<input type="text" name="email"><br>
+		<input type="text" name="email">
 		<label>Email</label>
 	</div>
 	<div class="group">
-		<input type="text" name="phone"><br>
+		<input type="text" name="phone">
 		<label>Phone</label>
 	</div>
 	<div class="group">
-		Date<input type="date" name="date"><br>
+		<input type="date" name="date" value=""><br>
 	</div>
 	<div class="group">
-		<select name="Time" required>
+		<select name="Time" class="form-control">
 			<option value="">Select a Time</option>
 			<option value="7:00AM">7:00AM</option>
 			<option value="7:30AM">7:30AM</option>
@@ -45,13 +45,13 @@
 		</select><br>
 	</div>
 
-	<input type="submit" value="Reserve!">
+	<input type="submit" value="Reserve!" class="btn btn-default">
 
 </form>
 
 <!-- Manage the input from the user -->
 <?php
 
-var_dump($_POST);
+//var_dump($_POST);
 
 ?>

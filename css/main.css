@@ -9,11 +9,15 @@
 	position: relative;
 	margin-bottom: 20px;
 }
+input,
+select {
+	width: 300px !important;
+}
+
 input {
 	font-size: 18px;
 	padding: 10px 10px 10px 5px;
 	display: block;
-	width: 300px;
 	border: none;
 	border-bottom: 1px solid #757575;
 }
@@ -34,6 +38,16 @@ label {
 	left: 5px;
 	top: 20px;
 	transition: 0.2s ease all;
+}
+
+/* DATE */
+input[type="date"]:before {
+	content: attr(placeholder);
+	color: #aaa;
+}
+
+input[type="date"]:focus:before, input[type="date"]:valid:before {
+	content: "";
 }
 
 /* LIST */
