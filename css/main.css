@@ -109,7 +109,7 @@ input[type="date"]:focus:before, input[type="date"]:valid:before {
 	positioN: absolute;
 	height: 30%;
 	width: 100%;
-	background: #96f8ff;
+	background: #99bc08;
 	bottom: 50%;
 }
 #clock #minute {
@@ -126,7 +126,7 @@ input[type="date"]:focus:before, input[type="date"]:valid:before {
 	positioN: absolute;
 	height: 35%;
 	width: 100%;
-	background: #96f8ff;
+	background: #99bc08;
 	bottom: 50%;
 }
 #clock #second {
@@ -142,7 +142,7 @@ input[type="date"]:focus:before, input[type="date"]:valid:before {
 	positioN: absolute;
 	height: 40%;
 	width: 100%;
-	background: #96f8ff;
+	background: #99bc08;
 	bottom: 50%;
 }
 .hr12 {

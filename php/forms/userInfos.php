@@ -1,5 +1,6 @@
 <form action="" method="post" novalidate>
 
+<!-- forms for customer name, email, phone number and a date selection/time dropdown-->
 	<div class="group">
 		<input type="text" name="name">
 		<label>Name</label>
