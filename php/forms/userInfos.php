@@ -3,15 +3,15 @@
 
 	<!-- forms for customer name, email, phone number and a date selection/time dropdown-->
 		<div class="group">
-			<input id="guestName" type="text" name="name">
+			<input id="guestName" type="text" name="name" autocomplete="off" required>
 			<label>Name</label>
 		</div>
 		<div class="group">
-			<input id="guestEmail" type="text" name="email">
+			<input id="guestEmail" type="text" name="email" autocomplete="off" required>
 			<label>Email</label>
 		</div>
 		<div class="group">
-			<input id="guestPhone" type="text" name="phone">
+			<input id="guestPhone" type="text" name="phone" autocomplete="off" required>
 			<label>Phone</label>
 		</div>
 		<div class="group">
