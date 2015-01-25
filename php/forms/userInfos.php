@@ -1,23 +1,23 @@
-<form action="" method="post" novalidate>
+<form id="guestForm" action="" method="post" onsubmit="event.preventDefault();" novalidate >
 
 <!-- forms for customer name, email, phone number and a date selection/time dropdown-->
 	<div class="group">
-		<input type="text" name="name">
+		<input id="guestName" type="text" name="name">
 		<label>Name</label>
 	</div>
 	<div class="group">
-		<input type="text" name="email">
+		<input id="guestEmail" type="text" name="email">
 		<label>Email</label>
 	</div>
 	<div class="group">
-		<input type="text" name="phone">
+		<input id="guestPhone" type="text" name="phone">
 		<label>Phone</label>
 	</div>
 	<div class="group">
-		<input type="date" name="date" value="Select a Date"><br>
+		<input id="guestDate" type="date" name="date" value="Select a Date"><br>
 	</div>
 	<div class="group">
-		<select name="Time" class="form-control">
+		<select id="guestTime" name="Time" class="form-control">
 			<option value="">Select a Time</option>
 			<option value="7:00AM">7:00AM</option>
 			<option value="7:30AM">7:30AM</option>
@@ -47,6 +47,8 @@
 	</div>
 
 	<input type="submit" value="Reserve!" class="btn btn-default">
+
+
 
 </form>
 
