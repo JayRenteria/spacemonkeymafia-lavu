@@ -73,44 +73,44 @@ class Reservation {
 	 * @throws RangeException if $newReservationDate is a date that does not exist
 	 */
 	public function setReservationDate($newReservationDate) {
-			// base case: if the date is null, use the current date and time
-			if($newReservationDate === null) {
-				$this->reservationDate = new DateTime();
-				return;
-			}
-
-			// base case: if the date is a DateTime object, there's no work to be done
-			if(is_object($newReservationDate) === true && get_class($newReservationDate) === "DateTime") {
-				$this->reservationDate = $newReservationDate;
-				return;
-			}
-
-			// treat the date as a mySQL date string: Y-m-d H:i:s
-			$newReservationDate = trim($newReservationDate);
-			if((preg_match("/^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/", $newReservationDate, $matches)) !== 1) {
-				throw(new InvalidArgumentException("reservation date is not a valid date"));
-			}
-
-			// verify the date is really a valid calendar date
-			$year   = intval($matches[1]);
-			$month  = intval($matches[2]);
-			$day    = intval($matches[3]);
-			$hour   = intval($matches[4]);
-			$minute = intval($matches[5]);
-			$second = intval($matches[6]);
-			if(checkdate($month, $day, $year) === false) {
-				throw(new RangeException("reservation date $newReservationDate is not a Gregorian date"));
-			}
-
-			// verify the time is really a valid wall clock time
-			if($hour < 0 || $hour >= 24 || $minute < 0 || $minute >= 60 || $second < 0  || $second >= 60) {
-				throw(new RangeException("reservation date $newReservationDate is not a valid time"));
-			}
-
-			// store the reservation date
-			$newReservationDate = DateTime::createFromFormat("Y-m-d H:i:s", $newReservationDate);
-			$this->reservationDate = $newReservationDate;
+		// base case: if the date is null, use the current date and time
+		if($newReservationDate === null) {
+			$this->reservationDate = new DateTime();
+			return;
 		}
+
+		// base case: if the date is a DateTime object, there's no work to be done
+		if(is_object($newReservationDate) === true && get_class($newReservationDate) === "DateTime") {
+			$this->reservationDate = $newReservationDate;
+			return;
+		}
+
+		// treat the date as a mySQL date string: Y-m-d H:i:s
+		$newReservationDate = trim($newReservationDate);
+		if((preg_match("/^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/", $newReservationDate, $matches)) !== 1) {
+			throw(new InvalidArgumentException("reservation date is not a valid date"));
+		}
+
+		// verify the date is really a valid calendar date
+		$year = intval($matches[1]);
+		$month = intval($matches[2]);
+		$day = intval($matches[3]);
+		$hour = intval($matches[4]);
+		$minute = intval($matches[5]);
+		$second = intval($matches[6]);
+		if(checkdate($month, $day, $year) === false) {
+			throw(new RangeException("reservation date $newReservationDate is not a Gregorian date"));
+		}
+
+		// verify the time is really a valid wall clock time
+		if($hour < 0 || $hour >= 24 || $minute < 0 || $minute >= 60 || $second < 0 || $second >= 60) {
+			throw(new RangeException("reservation date $newReservationDate is not a valid time"));
+		}
+
+		// store the reservation date
+		$newReservationDate = DateTime::createFromFormat("Y-m-d H:i:s", $newReservationDate);
+		$this->reservationDate = $newReservationDate;
+	}
 
 	/**
 	 * accessor method for reservation time
@@ -148,12 +148,12 @@ class Reservation {
 		}
 
 		// verify the date is really a valid calendar date
-		$hour   = intval($matches[1]);
+		$hour = intval($matches[1]);
 		$minute = intval($matches[2]);
 		$second = intval($matches[3]);
 
 		// verify the time is really a valid wall clock time
-		if($hour < 0 || $hour >= 24 || $minute < 0 || $minute >= 60 || $second < 0  || $second >= 60) {
+		if($hour < 0 || $hour >= 24 || $minute < 0 || $minute >= 60 || $second < 0 || $second >= 60) {
 			throw(new RangeException("reservation time $newReservationTime is not a valid time"));
 		}
 
@@ -175,8 +175,8 @@ class Reservation {
 	 * mutator method for reservation count
 	 *
 	 * @param int $newReservationCount new reservation count
-	 * @throws
-	 * @throws
+	 * @throws InvalidArgumentException if $newReservationCount is not an integer
+	 * @throws RangeException if $newReservationCount is not positive
 	 */
 	public function setReservationCount($newReservationCount) {
 		// verify reservation count is valid
@@ -227,37 +227,37 @@ class Reservation {
 		$this->guestName = $newGuestName;
 	}
 
-		/**
-		 * accessor method for number of guests
-		 *
-		 * @return int value number of guests
-		 */
-		public function getNumOfGuests() {
-			return ($this->numOfGuests);
+	/**
+	 * accessor method for number of guests
+	 *
+	 * @return int value number of guests
+	 */
+	public function getNumOfGuests() {
+		return ($this->numOfGuests);
+	}
+
+	/**
+	 * mutator method for number of guests
+	 *
+	 * @param int $newNumOfGuests number of guests
+	 * @throws InvalidArgumentException if $newNumOfGuests is not an integer
+	 * @throws RangeException if $newNumOfGuests is not positive
+	 */
+	public function setNumOfGuests($newNumOfGuests) {
+		// verify number of guests is valid
+		$newNumOfGuests = filter_var($newNumOfGuests, FILTER_VALIDATE_INT);
+		if($newNumOfGuests === false) {
+			throw(new InvalidArgumentException("number of guests count is not a valid integer"));
 		}
 
-		/**
-		 * mutator method for number of guests
-		 *
-		 * @param int $newNumOfGuests number of guests
-		 * @throws InvalidArgumentException if $newNumOfGuests is not an integer
-		 * @throws RangeException if $newNumOfGuests is not positive
-		 */
-		public function setNumOfGuests($newNumOfGuests) {
-			// verify number of guests is valid
-			$newNumOfGuests = filter_var($newNumOfGuests, FILTER_VALIDATE_INT);
-			if($newNumOfGuests === false) {
-				throw(new InvalidArgumentException("number of guests count is not a valid integer"));
-			}
-
-			// verify number of guests is positive
-			if($newNumOfGuests <= 0) {
-				throw(new RangeException("number of guests count is not positive"));
-			}
-
-			// convert and store number of guests
-			$this->numOfGuests = intval($newNumOfGuests);
+		// verify number of guests is positive
+		if($newNumOfGuests <= 0) {
+			throw(new RangeException("number of guests count is not positive"));
 		}
+
+		// convert and store number of guests
+		$this->numOfGuests = intval($newNumOfGuests);
+	}
 
 	/**
 	 * inserts a reservation into mySQL
@@ -301,32 +301,32 @@ class Reservation {
 	 * @throws mysqli_sql_exception when mySQL related errors occur
 	 **/
 	public function delete(&$mysqli) {
-	// handle degenerate cases
-	if(gettype($mysqli) !== "object" || get_class($mysqli) !== "mysqli") {
-		throw(new mysqli_sql_exception("input is not a mysqli object"));
-	}
+		// handle degenerate cases
+		if(gettype($mysqli) !== "object" || get_class($mysqli) !== "mysqli") {
+			throw(new mysqli_sql_exception("input is not a mysqli object"));
+		}
 
-	// create query template
-	$query = "DELETE FROM reservation WHERE reservationDate = ? AND reservationTime = ? AND guestName = ?";
-	$statement = $mysqli->prepare($query);
-	if($statement === false) {
-		throw(new mysqli_sql_exception("unable to prepare statement"));
-	}
+		// create query template
+		$query = "DELETE FROM reservation WHERE reservationDate = ? AND reservationTime = ? AND guestName = ?";
+		$statement = $mysqli->prepare($query);
+		if($statement === false) {
+			throw(new mysqli_sql_exception("unable to prepare statement"));
+		}
 
-	// bind the reservation variables to the place holder in the template
-	$wasClean = $statement->bind_param("sss", $this->reservationDate, $this->reservationTime, $this->guestName);
-	if($wasClean === false) {
-		throw(new mysqli_sql_exception("unable to bind parameters"));
-	}
+		// bind the reservation variables to the place holder in the template
+		$wasClean = $statement->bind_param("sss", $this->reservationDate, $this->reservationTime, $this->guestName);
+		if($wasClean === false) {
+			throw(new mysqli_sql_exception("unable to bind parameters"));
+		}
 
-	// execute the statement
-	if($statement->execute() === false) {
-		throw(new mysqli_sql_exception("unable to execute mySQL statement: " . $statement->error));
-	}
+		// execute the statement
+		if($statement->execute() === false) {
+			throw(new mysqli_sql_exception("unable to execute mySQL statement: " . $statement->error));
+		}
 
-	// clean up the statement
-	$statement->close();
-}
+		// clean up the statement
+		$statement->close();
+	}
 
 	/**
 	 * updates a reservation in mySQL
@@ -341,7 +341,7 @@ class Reservation {
 		}
 
 		// create query template
-		$query = "UPDATE reservation SET reservationDate = ?, reservationTime = ?, reservationCount = ?, guestName = ?, numOfGuests = ? WHERE reservationDate = ? and reservationTime = ? and guestName = ?";
+		$query = "UPDATE reservation SET reservationDate = ?, reservationTime = ?, reservationCount = ?, guestName = ?, numOfGuests = ? WHERE reservationDate = ? AND reservationTime = ? AND guestName = ?";
 		$statement = $mysqli->prepare($query);
 		if($statement === false) {
 			throw(new mysqli_sql_exception("unable to prepare statement"));
@@ -361,5 +361,57 @@ class Reservation {
 		// clean up the statement
 		$statement->close();
 	}
+
+
+public static function getReservations(&$mysqli, $reservationDate, $reservationTime) {
+	// handle degenerate cases
+	if(gettype($mysqli) !== "object" || get_class($mysqli) !== "mysqli") {
+		throw(new mysqli_sql_exception("input is not a mysqli object"));
+	}
+
+	// sanitize the description before searching
+//	$tweetContent = trim($tweetContent);
+//	$tweetContent = filter_var($tweetContent, FILTER_SANITIZE_STRING);
+
+	// create query template
+	$query	 = "SELECT reservationDate, reservationTime FROM reservation WHERE reservationDate = ?";
+	$statement = $mysqli->prepare($query);
+	if($statement === false) {
+		throw(new mysqli_sql_exception("unable to prepare statement"));
+	}
+
+	// bind the tweet content to the place holder in the template
+	$wasClean = $statement->bind_param("ss", $reservationDate, $reservationTime);
+	if($wasClean === false) {
+		throw(new mysqli_sql_exception("unable to bind parameters"));
+	}
+
+	// execute the statement
+	if($statement->execute() === false) {
+		throw(new mysqli_sql_exception("unable to execute mySQL statement: " . $statement->error));
+	}
+
+	// get result from the SELECT query
+	$result = $statement->get_result();
+	if($result === false) {
+		throw(new mysqli_sql_exception("unable to get result set"));
+	}
+
+	// build an array of tweet
+	$reservations = array();
+	while(($row = $result->fetch_assoc()) !== null) {
+		try {
+			$reservation	= new Reservation($row["reservationDate"], $row["reservationTime"], $row["reservationCount"], $row["guestName"], $row["numOfGuests"]);
+			$reservations[] = $reservation;
+		}
+		catch(Exception $exception) {
+			// if the row couldn't be converted, rethrow it
+			throw(new mysqli_sql_exception($exception->getMessage(), 0, $exception));
+		}
+	}
+		return($reservations);
 }
+}
+
+
 ?>

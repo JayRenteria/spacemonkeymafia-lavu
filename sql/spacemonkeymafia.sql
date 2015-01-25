@@ -9,7 +9,7 @@ reservationDate DATETIME,
 	numOfGuests INT UNSIGNED
 );
 
-CREATE TABLE guestTables (
+CREATE TABLE guestTable (
 	tableId INT UNSIGNED AUTO_INCREMENT,
 	tableNumber INT UNSIGNED,
 	capacity INT UNSIGNED,
