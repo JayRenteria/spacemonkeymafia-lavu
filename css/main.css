@@ -1,7 +1,7 @@
 /* DYNAMIC CONTENT */
-/*#reservationConfirmationCard {*/
-	/*display: none;*/
-/*}*/
+#reservationConfirmationCard {
+	display: none;
+}
 
 
 .container-fluid {
@@ -12,6 +12,12 @@
 /*[class^="col-"] {*/
 	/*border: 1px solid black;*/
 /*}*/
+.border-wrapper {
+	padding: 2em;
+	border: 1px solid #99bc08;
+	border-radius: 5px;
+}
+
 /* INPUTS */
 .group {
 	position: relative;
@@ -74,6 +80,7 @@ input[type="date"]:focus:before, input[type="date"]:valid:before {
 #clock ul {
 	height: 200px;
 	width: 200px;
+	display: inline-block;
 }
 #clock ul .hour {
 	position: absolute;
@@ -225,4 +232,9 @@ input[type="date"]:focus:before, input[type="date"]:valid:before {
 }
 .hr1 span {
 	transform: rotate(-30deg);
+}
+
+/* TABLE */
+table.table {
+	border: 1px solid #99bc08;
 }
