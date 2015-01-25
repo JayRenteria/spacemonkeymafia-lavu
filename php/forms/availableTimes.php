@@ -12,7 +12,7 @@ try {
 	mysqli_report(MYSQLI_REPORT_STRICT);
 
 	// now go ahead and connect
-	$mysqli = new mysqli("localhost", '', '', '');
+	$mysqli = new mysqli("localhost", 'nlopez', '', 'nlopez');
 
 	// get the reservations
 	$reservations = Reservation::getReservations($mysqli);

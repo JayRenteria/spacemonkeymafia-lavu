@@ -23,7 +23,7 @@ function guestSubmit() {
 	// TODO: validation if some time available
 
 	data.submit = true;
-	console.log("debug");
+	console.log("formValidation.js");
 	$.post( url, data, function( response ) {
 		if( response.valid === false ) {
 			console.log("response invalid");

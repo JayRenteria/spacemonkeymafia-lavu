@@ -265,6 +265,10 @@ table.table {
 	border: 1px solid #99bc08;
 }
 
+table.table tr td:not(:first-child) {
+	text-align: center;
+}
+
 @media screen and (max-width: 768px) {
 	/*#clock,*/
 	/*#clock ul {*/

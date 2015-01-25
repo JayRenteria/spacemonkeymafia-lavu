@@ -41,7 +41,7 @@ try {
 	mysqli_report(MYSQLI_REPORT_STRICT);
 
 	// now go ahead and connect
-	$mysqli = new mysqli("localhost", 'nlopez', 'cedaraoshorerhinedrill', 'nlopez');
+	$mysqli = new mysqli("localhost", 'nlopez', '', 'nlopez');
 
 	// now, insert into mySQL
 	$reservation->insert($mysqli);
