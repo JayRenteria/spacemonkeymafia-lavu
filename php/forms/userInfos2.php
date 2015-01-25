@@ -1,3 +1,4 @@
+
 <div class="border-wrapper">
 	<form id="guestForm" action="page3.php" method="post" novalidate>
 
@@ -25,6 +26,7 @@
 					echo "Exception: " . $exception->getMessage() . "<br/>";
 					echo $exception->getFile() .":" . $exception->getLine();
 				}
+
 				?>
 				<option value="">Select a Time</option>
 				<option value="7:00AM">7:00AM</option>
@@ -52,6 +54,11 @@
 				<option value="6:00PM">6:00PM</option>
 				<option value="6:30PM">6:30PM</option>
 			</select><br>
+			<input class="invisible-input" type="text" value="<?php echo $_POST['name']; ?>" name="<?php echo $_POST['name']; ?>">
+			<input class="invisible-input" type="text" value="<?php echo $_POST['email']; ?>" name="<?php echo $_POST['email']; ?>"/>
+			<input class="invisible-input" type="text" value="<?php echo $_POST['phone']; ?>" name="<?php echo $_POST['phone']; ?>"/>
+			<input class="invisible-input" type="text" value="<?php echo $_POST['date']; ?>" name="<?php echo $_POST['date']; ?>">
+			<input class="invisible-input" type="text" value="<?php echo $_POST['numberOfGuests'];?>" name="<?php echo $_POST['numberOfGuests']; ?>"/>
 		</div>
 
 	<input type="submit" value="Reserve!" class="btn btn-default">

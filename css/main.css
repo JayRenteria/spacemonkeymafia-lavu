@@ -88,6 +88,10 @@ label {
 	transition: 0.6s ease all;
 }
 
+.invisible-input {
+	display: none;
+}
+
 /* DATE */
 /*input[type="date"],*/
 /*select {*/
