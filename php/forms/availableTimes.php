@@ -28,6 +28,7 @@ echo "<table border='1' class='table'>
 <th>Date</th>
 <th>Time</th>
 <th>Number of Guests</th>
+<th>Phone</th>
 </tr>";
 //echo date('m-d-Y h:i:s') . "<br>";
 //echo date('m-d-Y h:i:s', date("m-d-Y h:i:s") - 60 * 60 * 2);
@@ -46,6 +47,7 @@ foreach($reservations as $reservation) {
 	echo "<td>" . $newDate . "</td>";
 	echo "<td>" . $newTime . "</td>";
 	echo "<td>" . $reservation->getNumOfGuests() . "</td>";
+	echo "<td>" . $reservation->getPhone() . "</td>";
 	echo "</tr>";
 }
 echo "</table>";
