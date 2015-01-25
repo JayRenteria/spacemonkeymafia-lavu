@@ -283,18 +283,18 @@ class Reservation {
 	 *
 	 * @param string $newEmail new guest email
 	 * @throws InvalidArgumentException if $newEmail is not a string or insecure
-	 * @throws RangeException if $newEmail is > 25 characters
+	 * @throws RangeException if $newEmail is > 65 characters
 	 */
 	public function setEmail($newEmail) {
 		// verify email is valid
 		$newEmail = trim($newEmail);
-		$newEmail = filter_var($newEmail, FILTER_SANITIZE_STRING);
+		$newEmail = filter_var($newEmail, FILTER_VALIDATE_EMAIL);
 		if(empty($newEmail) === true) {
 			throw(new InvalidArgumentException("email content is empty or insecure"));
 		}
 
-		// verify email does not exceed 25 characters
-		if(strlen($newEmail) > 64) {
+		// verify email does not exceed 65 characters
+		if(strlen($newEmail) > 65) {
 			throw(new RangeException("email content too large"));
 		}
 
