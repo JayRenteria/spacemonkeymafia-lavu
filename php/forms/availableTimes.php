@@ -42,12 +42,16 @@ foreach($reservations as $reservation) {
 //    continue;
 //  }
 	$newTime = date('h:i:s a', strtotime($reservation->getReservationTime()));
+	$areaCode = substr($reservation->getPhone(), 0, 3);
+	$firstThree = substr($reservation->getPhone(), 3, 3);
+	$lastFour = substr($reservation->getPhone(), 6, 4);
+	$newPhone = $areaCode . " " . $firstThree . " " . $lastFour;
 	echo "<tr>";
 	echo "<td>" . $reservation->getGuestName() . "</td>";
 	echo "<td>" . $newDate . "</td>";
 	echo "<td>" . $newTime . "</td>";
 	echo "<td>" . $reservation->getNumOfGuests() . "</td>";
-	echo "<td>" . $reservation->getPhone() . "</td>";
+	echo "<td>" . $newPhone . "</td>";
 	echo "</tr>";
 }
 echo "</table>";
