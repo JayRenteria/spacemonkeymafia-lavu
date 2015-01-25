@@ -78,7 +78,6 @@ class Reservation {
 			$this->reservationDate = new DateTime();
 			return;
 		}
-
 		// base case: if the date is a DateTime object, there's no work to be done
 		if(is_object($newReservationDate) === true && get_class($newReservationDate) === "DateTime") {
 			$this->reservationDate = $newReservationDate;
@@ -363,7 +362,7 @@ class Reservation {
 	}
 
 
-public static function getReservations(&$mysqli, $reservationDate, $reservationTime) {
+public static function getReservations(&$mysqli, $reservationDate=null, $reservationTime=null) {
 	// handle degenerate cases
 	if(gettype($mysqli) !== "object" || get_class($mysqli) !== "mysqli") {
 		throw(new mysqli_sql_exception("input is not a mysqli object"));
@@ -374,14 +373,26 @@ public static function getReservations(&$mysqli, $reservationDate, $reservationT
 //	$tweetContent = filter_var($tweetContent, FILTER_SANITIZE_STRING);
 
 	// create query template
-	$query	 = "SELECT reservationDate, reservationTime FROM reservation WHERE reservationDate = ? AND reservationTime = ?";
+	if($reservationDate !== null && $reservationTime !== null) {
+		$query = "SELECT guestName, reservationDate, reservationTime, numOfGuests, reservationCount FROM reservation WHERE reservationDate = ? AND reservationTime = ?";
+	} else if($reservationDate !== null) {
+		$query = "SELECT guestName, reservationDate, reservationTime, numOfGuests, reservationCount FROM reservation WHERE reservationDate = ?";
+	} else {
+		$query = "SELECT guestName, reservationDate, reservationTime, numOfGuests, reservationCount FROM reservation";
+	}
 	$statement = $mysqli->prepare($query);
 	if($statement === false) {
 		throw(new mysqli_sql_exception("unable to prepare statement"));
 	}
 
 	// bind the tweet content to the place holder in the template
-	$wasClean = $statement->bind_param("ss", $reservationDate, $reservationTime);
+	if($reservationDate !== null && $reservationTime !== null) {
+		$wasClean = $statement->bind_param("ss", $reservationDate, $reservationTime);
+	} else if($reservationDate !== null) {
+		$wasClean = $statement->bind_param("s", $reservationDate);
+	} else {
+		$wasClean = true;
+	}
 	if($wasClean === false) {
 		throw(new mysqli_sql_exception("unable to bind parameters"));
 	}

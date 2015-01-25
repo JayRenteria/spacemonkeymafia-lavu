@@ -1,22 +1,23 @@
-<!--<h2>Available times:</h2>-->
-<!--<ul class="list-group">-->
-<!--	<li class="list-group-item">7 PM</li>-->
-<!--	<li class="list-group-item">8 PM</li>-->
-<!--	<li class="list-group-item">Morbi leo risus</li>-->
-<!--	<li class="list-group-item">Porta ac consectetur ac</li>-->
-<!--	<li class="list-group-item">Vestibulum at eros</li>-->
-<!--</ul>-->
-
-
 <?php
-$con=mysqli_connect("localhost","nlopez","cedaraoshorerhinedrill","nlopez");
-// Check connection
-if (mysqli_connect_errno())
-{
-	echo "Failed to connect to MySQL: " . mysqli_connect_error();
-}
 
-$result = mysqli_query($con,"SELECT guestName, reservationDate, reservationTime, numOfGuests FROM reservation");
+require_once("php/misc/reservation.php");
+
+$reservations = null;
+
+//connect to mySQL and populate the database
+try {
+	// tell mysqli to throw exceptions
+	mysqli_report(MYSQLI_REPORT_STRICT);
+
+	// now go ahead and connect
+	$mysqli = new mysqli("localhost", 'nlopez', 'cedaraoshorerhinedrill', 'nlopez');
+
+	// get the reservations
+	$reservations = Reservation::getReservations($mysqli);
+} catch(Exception $exception) {
+	echo "Exception: " . $exception->getMessage() . "<br/>";
+	echo $exception->getFile() .":" . $exception->getLine();
+}
 
 echo "<table border='1' class='table'>
 <tr>
@@ -26,19 +27,16 @@ echo "<table border='1' class='table'>
 <th>Number of Guests</th>
 </tr>";
 
-
-while($row = mysqli_fetch_array($result))
-{
-	$newDate = explode(" ", $row['reservationDate']);
+foreach($reservations as $reservation) {
+	$newDate = explode(" ", $reservation->getReservationDate()->format('m-d-Y'));
 	$newDate = $newDate[0];
 	echo "<tr>";
-	echo "<td>" . $row['guestName'] . "</td>";
+	echo "<td>" . $reservation->getGuestName() . "</td>";
 	echo "<td>" . $newDate . "</td>";
-	echo "<td>" . $row['reservationTime'] . "</td>";
-	echo "<td>" . $row['numOfGuests'] . "</td>";
+	echo "<td>" . $reservation->getReservationTime() . "</td>";
+	echo "<td>" . $reservation->getNumOfGuests() . "</td>";
 	echo "</tr>";
 }
 echo "</table>";
 
-mysqli_close($con);
 ?>
