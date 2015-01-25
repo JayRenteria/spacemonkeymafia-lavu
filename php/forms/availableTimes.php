@@ -30,17 +30,12 @@ echo "<table border='1' class='table'>
 <th>Number of Guests</th>
 <th>Phone</th>
 </tr>";
-//echo date('m-d-Y h:i:s') . "<br>";
-//echo date('m-d-Y h:i:s', date("m-d-Y h:i:s") - 60 * 60 * 2);
 
 foreach($reservations as $reservation) {
 	$newDate = explode(" ", $reservation->getReservationDate()->format('m-d-Y'));
 	$newDate = $newDate[0];
 	$time = $reservation->getReservationTime();
 
-//  if($time < date('h:i:s', date("h:i:s") - 60 * 60 * 2)) {
-//    continue;
-//  }
 	$newTime = date('h:i:s a', strtotime($reservation->getReservationTime()));
 	$areaCode = substr($reservation->getPhone(), 0, 3);
 	$firstThree = substr($reservation->getPhone(), 3, 3);

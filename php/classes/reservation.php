@@ -49,7 +49,7 @@ class Reservation {
 	 * @throws InvalidArgumentException if data types are invalid
 	 * @throws RangeException if data values are out of bounds
 	 */
-	public function __construct($newReservationDate, $newReservationTime, $newReservationCount, $newGuestName, $newNumOfGuests, $newEmail, $newPhone) {
+	public function __construct($newReservationDate, $newReservationTime, $newReservationCount, $newGuestName, $newNumOfGuests, $newPhone, $newEmail=null) {
 		// use the mutators to do the work for us
 		try {
 			$this->setReservationDate($newReservationDate);
@@ -459,7 +459,6 @@ public static function getReservations(&$mysqli, $reservationDate=null, $reserva
 	if($statement === false) {
 		throw(new mysqli_sql_exception("unable to prepare statement"));
 	}
-
 	// bind the tweet content to the place holder in the template
 	if($reservationDate !== null && $reservationTime !== null) {
 		$wasClean = $statement->bind_param("ss", $reservationDate, $reservationTime);
@@ -487,15 +486,19 @@ public static function getReservations(&$mysqli, $reservationDate=null, $reserva
 	$reservations = array();
 	while(($row = $result->fetch_assoc()) !== null) {
 		try {
-			$reservation	= new Reservation($row["reservationDate"], $row["reservationTime"], $row["reservationCount"], $row["guestName"], $row["numOfGuests"], $row["email"], $row["phone"]);
+			if(empty($row["email"])) {
+				$reservation	= new Reservation($row["reservationDate"], $row["reservationTime"], $row["reservationCount"], $row["guestName"], $row["numOfGuests"], $row["phone"]);
+			} else {
+				$reservation = new Reservation($row["reservationDate"], $row["reservationTime"], $row["reservationCount"], $row["guestName"], $row["numOfGuests"], $row["phone"], $row["email"]);
+			}
 			$reservations[] = $reservation;
-		}
-		catch(Exception $exception) {
+
+		} catch(Exception $exception) {
 			// if the row couldn't be converted, rethrow it
 			throw(new mysqli_sql_exception($exception->getMessage(), 0, $exception));
 		}
 	}
-		return($reservations);
+	return($reservations);
 }
 }
 

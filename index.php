@@ -1,15 +1,12 @@
 <?php include_once("php/misc/header.php"); ?>
 
-
+<?php include_once "php/misc/clock.php"; ?>
+<h1 id="reservation-title">Reservation</h1>
 <div class="row-fluid">
-	<h1>Reservation</h1>
-	<div class="col-xs-4 col-sm-4">
+	<div class="col-xs-5">
 		<?php include_once "php/forms/userInfos.php"; ?>
 	</div>
-	<div class="col-xs-2 col-sm-3">
-		<?php include_once "php/misc/clock.php"; ?>
-	</div>
-	<div class="col-xs-6 col-sm-5">
+	<div class="col-xs-7">
 		<?php include_once "php/forms/availableTimes.php"; ?>
 	</div>
 </div>

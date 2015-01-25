@@ -38,10 +38,10 @@
 
 				require_once("php/misc/config.php");
 				require_once("php/classes/reservation.php");
-
-				$reservations = null;
-
-				//connect to mySQL and populate the database
+//
+//				$reservations = null;
+//
+//				//connect to mySQL and populate the database
 				try {
 					// tell mysqli to throw exceptions
 					mysqli_report(MYSQLI_REPORT_STRICT);
@@ -55,6 +55,20 @@
 					echo "Exception: " . $exception->getMessage() . "<br/>";
 					echo $exception->getFile() .":" . $exception->getLine();
 				}
+
+//				foreach($reservations as $reservation) {
+//					$newDate = explode(" ", $reservation->getReservationDate()->format('m-d-Y'));
+//					$newDate = $newDate[0];
+//					$time = $reservation->getReservationTime();
+//
+//					$newTime = date('h:i:s a', strtotime($reservation->getReservationTime()));
+//					echo "<tr>";
+//					echo "<td>" . $reservation->getGuestName() . "</td>";
+//					echo "<td>" . $newDate . "</td>";
+//					echo "<td>" . $newTime . "</td>";
+//					echo "<td>" . $reservation->getNumOfGuests() . "</td>";
+//					echo "</tr>";
+//				}
 
 				?>
 				<option value="">Select a Time</option>
