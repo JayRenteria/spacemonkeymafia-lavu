@@ -49,7 +49,7 @@ class Reservation {
 	 * @throws InvalidArgumentException if data types are invalid
 	 * @throws RangeException if data values are out of bounds
 	 */
-	public function __construct($newReservationDate, $newReservationTime, $newReservationCount, $newGuestName, $newNumOfGuests) {
+	public function __construct($newReservationDate, $newReservationTime, $newReservationCount, $newGuestName, $newNumOfGuests, $newEmail, $newPhone) {
 		// use the mutators to do the work for us
 		try {
 			$this->setReservationDate($newReservationDate);
