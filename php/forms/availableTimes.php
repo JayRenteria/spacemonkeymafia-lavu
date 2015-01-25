@@ -35,7 +35,7 @@ while($row = mysqli_fetch_array($result))
 	echo "<td>" . $row['guestName'] . "</td>";
 	echo "<td>" . $newDate . "</td>";
 	echo "<td>" . $row['reservationTime'] . "</td>";
-	echo "<td>" . $row['numOfGuests'] . "</td";
+	echo "<td>" . $row['numOfGuests'] . "</td>";
 	echo "</tr>";
 }
 echo "</table>";
