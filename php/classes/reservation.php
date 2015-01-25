@@ -27,6 +27,14 @@ class Reservation {
 	 * number of guests in party
 	 */
 	private $numOfGuests;
+	/**
+	 * email of guest
+	 */
+	private $email;
+	/**
+	 * phone number of guest
+	 */
+	private $phone;
 
 	/**
 	 * constructor for reservation
@@ -36,6 +44,8 @@ class Reservation {
 	 * @param int $newReservationCount tally of reservations made within a time slot
 	 * @param string $newGuestName name or full name of guest
 	 * @param int $newNumOfGuests number of guests in party
+	 * @param string $newEmail email of guest
+	 * @param string $newPhone phone number of guest
 	 * @throws InvalidArgumentException if data types are invalid
 	 * @throws RangeException if data values are out of bounds
 	 */
@@ -47,6 +57,8 @@ class Reservation {
 			$this->setReservationCount($newReservationCount);
 			$this->setGuestName($newGuestName);
 			$this->setNumOfGuests($newNumOfGuests);
+			$this->setEmail($newEmail);
+			$this->setPhone($newPhone);
 		} catch(InvalidArgumentException $invalidArgument) {
 			// rethrow the exception to the caller
 			throw(new InvalidArgumentException($invalidArgument->getMessage(), 0, $invalidArgument));
@@ -218,7 +230,7 @@ class Reservation {
 		}
 
 		// verify guest name does not exceed 25 characters
-		if(strlen($newGuestName) > 25) {
+		if(strlen($newGuestName) > 64) {
 			throw(new RangeException("guest name content too large"));
 		}
 
@@ -257,7 +269,70 @@ class Reservation {
 		// convert and store number of guests
 		$this->numOfGuests = intval($newNumOfGuests);
 	}
+	/**
+	 * accessor method for email
+	 *
+	 * @return string value email
+	 */
+	public function getEmail() {
+		return ($this->email);
+	}
 
+	/**
+	 * mutator method for email
+	 *
+	 * @param string $newEmail new guest email
+	 * @throws InvalidArgumentException if $newEmail is not a string or insecure
+	 * @throws RangeException if $newEmail is > 25 characters
+	 */
+	public function setEmail($newEmail) {
+		// verify email is valid
+		$newEmail = trim($newEmail);
+		$newEmail = filter_var($newEmail, FILTER_SANITIZE_STRING);
+		if(empty($newEmail) === true) {
+			throw(new InvalidArgumentException("email content is empty or insecure"));
+		}
+
+		// verify email does not exceed 25 characters
+		if(strlen($newEmail) > 64) {
+			throw(new RangeException("email content too large"));
+		}
+
+		// store email
+		$this->email = $newEmail;
+	}
+	/**
+	 * accessor method for phone
+	 *
+	 * @return string value phone
+	 */
+	public function getPhone() {
+		return ($this->phone);
+	}
+
+	/**
+	 * mutator method for phone
+	 *
+	 * @param string $newPhone new guest phone number
+	 * @throws InvalidArgumentException if $newPhone is not a string or insecure,
+	 * @throws RangeException if $newPhone is > 9 characters
+	 */
+	public function setPhone($newPhone) {
+		// verify email is valid
+		$newPhone = trim($newPhone, "-()");
+		$newPhone = filter_var($newPhone, FILTER_SANITIZE_STRING);
+		if(empty($newPhone) === true) {
+			throw(new InvalidArgumentException("phone content is empty or insecure"));
+		}
+
+		// verify email does not exceed 9 characters
+		if(strlen($newPhone) > 9) {
+			throw(new RangeException("phone content too large"));
+		}
+
+		// store email
+		$this->phone = $newPhone;
+	}
 	/**
 	 * inserts a reservation into mySQL
 	 *
@@ -271,7 +346,7 @@ class Reservation {
 		}
 
 		// create query template
-		$query = "INSERT INTO reservation(reservationDate, reservationTime, reservationCount, guestName, numOfGuests) VALUES(?, ?, ?, ?, ?)";
+		$query = "INSERT INTO reservation(reservationDate, reservationTime, reservationCount, guestName, numOfGuests, email, phone) VALUES(?, ?, ?, ?, ?, ?, ?)";
 		$statement = $mysqli->prepare($query);
 		if($statement === false) {
 			throw(new mysqli_sql_exception("unable to prepare statement"));
@@ -279,7 +354,7 @@ class Reservation {
 
 		// bind the reservation variables to the place holders in the template
 		$formattedDate = $this->reservationDate->format("Y-m-d H:i:s");
-		$wasClean = $statement->bind_param("ssisi", $formattedDate, $this->reservationTime, $this->reservationCount, $this->guestName, $this->numOfGuests);
+		$wasClean = $statement->bind_param("ssisiss", $formattedDate, $this->reservationTime, $this->reservationCount, $this->guestName, $this->numOfGuests, $this->email, $this->phone);
 		if($wasClean === false) {
 			throw(new mysqli_sql_exception("unable to bind parameters"));
 		}
@@ -306,14 +381,14 @@ class Reservation {
 		}
 
 		// create query template
-		$query = "DELETE FROM reservation WHERE reservationDate = ? AND reservationTime = ? AND guestName = ?";
+		$query = "DELETE FROM reservation WHERE reservationDate = ? AND reservationTime = ? AND guestName = ? AND email = ? AND phone = ?";
 		$statement = $mysqli->prepare($query);
 		if($statement === false) {
 			throw(new mysqli_sql_exception("unable to prepare statement"));
 		}
 
 		// bind the reservation variables to the place holder in the template
-		$wasClean = $statement->bind_param("sss", $this->reservationDate, $this->reservationTime, $this->guestName);
+		$wasClean = $statement->bind_param("sssss", $this->reservationDate, $this->reservationTime, $this->guestName, $this->email, $this->phone);
 		if($wasClean === false) {
 			throw(new mysqli_sql_exception("unable to bind parameters"));
 		}
@@ -340,14 +415,14 @@ class Reservation {
 		}
 
 		// create query template
-		$query = "UPDATE reservation SET reservationDate = ?, reservationTime = ?, reservationCount = ?, guestName = ?, numOfGuests = ? WHERE reservationDate = ? AND reservationTime = ? AND guestName = ?";
+		$query = "UPDATE reservation SET reservationDate = ?, reservationTime = ?, reservationCount = ?, guestName = ?, numOfGuests = ?, email = ?, phone = ? WHERE reservationDate = ? AND reservationTime = ? AND guestName = ?";
 		$statement = $mysqli->prepare($query);
 		if($statement === false) {
 			throw(new mysqli_sql_exception("unable to prepare statement"));
 		}
 
 		// bind the reservation variables to the place holders in the template
-		$wasClean = $statement->bind_param("ddisidds", $this->reservationDate, $this->reservationTime, $this->reservationCount, $this->guestName, $this->numOfGuests, $this->reservationDate, $this->reservationTime, $this->guestName);
+		$wasClean = $statement->bind_param("ssisiss", $this->reservationDate, $this->reservationTime, $this->reservationCount, $this->guestName, $this->numOfGuests, $this->email, $this->phone);
 		if($wasClean === false) {
 			throw(new mysqli_sql_exception("unable to bind parameters"));
 		}
@@ -374,11 +449,11 @@ public static function getReservations(&$mysqli, $reservationDate=null, $reserva
 
 	// create query template
 	if($reservationDate !== null && $reservationTime !== null) {
-		$query = "SELECT guestName, reservationDate, reservationTime, numOfGuests, reservationCount FROM reservation WHERE reservationDate = ? AND reservationTime = ?";
+		$query = "SELECT guestName, reservationDate, reservationTime, numOfGuests, reservationCount, email, phone FROM reservation WHERE reservationDate = ? AND reservationTime = ?";
 	} else if($reservationDate !== null) {
-		$query = "SELECT guestName, reservationDate, reservationTime, numOfGuests, reservationCount FROM reservation WHERE reservationDate = ?";
+		$query = "SELECT guestName, reservationDate, reservationTime, numOfGuests, reservationCount, email, phone FROM reservation WHERE reservationDate = ?";
 	} else {
-		$query = "SELECT guestName, reservationDate, reservationTime, numOfGuests, reservationCount FROM reservation";
+		$query = "SELECT guestName, reservationDate, reservationTime, numOfGuests, reservationCount, email, phone FROM reservation";
 	}
 	$statement = $mysqli->prepare($query);
 	if($statement === false) {
@@ -412,7 +487,7 @@ public static function getReservations(&$mysqli, $reservationDate=null, $reserva
 	$reservations = array();
 	while(($row = $result->fetch_assoc()) !== null) {
 		try {
-			$reservation	= new Reservation($row["reservationDate"], $row["reservationTime"], $row["reservationCount"], $row["guestName"], $row["numOfGuests"]);
+			$reservation	= new Reservation($row["reservationDate"], $row["reservationTime"], $row["reservationCount"], $row["guestName"], $row["numOfGuests"], $row["email"], $row["phone"]);
 			$reservations[] = $reservation;
 		}
 		catch(Exception $exception) {

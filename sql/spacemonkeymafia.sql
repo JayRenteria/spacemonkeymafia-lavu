@@ -6,7 +6,9 @@ reservationDate DATETIME,
 	reservationTime TIME,
 	reservationCount INT UNSIGNED,
 	guestName VARCHAR(25),
-	numOfGuests INT UNSIGNED
+	numOfGuests INT UNSIGNED,
+	phone VARCHAR(9),
+	email VARCHAR(64)
 );
 
 CREATE TABLE guestTable (
