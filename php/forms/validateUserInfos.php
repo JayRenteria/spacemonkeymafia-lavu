@@ -47,12 +47,11 @@ try {
 	$mysqli->close();
 
 	// var_dump the result to affirm we got a real primary key
-	var_dump($reservation);
+//	var_dump($reservation);
 } catch(Exception $exception) {
 	echo "Exception: " . $exception->getMessage() . "<br/>";
 	echo $exception->getFile() .":" . $exception->getLine();
 }
-//echo "done!";
 
 echo json_encode(
 	array(
