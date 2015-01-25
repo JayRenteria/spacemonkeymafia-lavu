@@ -374,7 +374,7 @@ public static function getReservations(&$mysqli, $reservationDate, $reservationT
 //	$tweetContent = filter_var($tweetContent, FILTER_SANITIZE_STRING);
 
 	// create query template
-	$query	 = "SELECT reservationDate, reservationTime FROM reservation WHERE reservationDate = ?";
+	$query	 = "SELECT reservationDate, reservationTime FROM reservation WHERE reservationDate = ? AND reservationTime = ?";
 	$statement = $mysqli->prepare($query);
 	if($statement === false) {
 		throw(new mysqli_sql_exception("unable to prepare statement"));

@@ -5,6 +5,8 @@ echo getcwd();
 require_once("../misc/reservation.php");
 $count = 2;
 
+
+// TOD
 //var_dump($_POST);
 
 // Format the time correctly
@@ -40,26 +42,26 @@ $reservation = new Reservation($date, $time, $count, $_POST["name"], $_POST["num
 
 //
 // connect to mySQL and populate the database
-//try {
-//	// tell mysqli to throw exceptions
-//	mysqli_report(MYSQLI_REPORT_STRICT);
-//
-//	// now go ahead and connect
-//	$mysqli = new mysqli("localhost", '', '', '');
-//
-//	// now, insert into mySQL
-//	$reservation->insert($mysqli);
-//
-//	// finally, disconnect from mySQL
-//	$mysqli->close();
-//
-//	// var_dump the result to affirm we got a real primary key
-//	var_dump($reservation);
-//} catch(Exception $exception) {
-//	echo "Exception: " . $exception->getMessage() . "<br/>";
-//	echo $exception->getFile() .":" . $exception->getLine();
-//}
-//echo "done!";
+try {
+	// tell mysqli to throw exceptions
+	mysqli_report(MYSQLI_REPORT_STRICT);
+
+	// now go ahead and connect
+	$mysqli = new mysqli("localhost", '', '', '');
+
+	// now, insert into mySQL
+	$reservation->insert($mysqli);
+
+	// finally, disconnect from mySQL
+	$mysqli->close();
+
+	// var_dump the result to affirm we got a real primary key
+	var_dump($reservation);
+} catch(Exception $exception) {
+	echo "Exception: " . $exception->getMessage() . "<br/>";
+	echo $exception->getFile() .":" . $exception->getLine();
+}
+echo "done!";
 
 //echo json_encode(
 //	array(
