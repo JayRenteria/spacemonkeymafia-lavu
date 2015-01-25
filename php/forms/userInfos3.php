@@ -31,8 +31,9 @@ foreach($reservations as $reservation) {
 //	echo '<p>Date: ' . $reservation->getReservationDate() . '</p>';
 //	echo '<p>Time: ' . $reservation->getReservationTime() . '</p>';
 }
+
 ?>
 
-	<a href="<?php echo $_SERVER['PHP_SELF']; ?>">Click here to go home!</a>
+	<a href="<?php echo 'https://' . dirname($_SERVER['SERVER_NAME'] . $_SERVER['SCRIPT_NAME']); ?>">Click here to go home!</a>
 </div>
 
