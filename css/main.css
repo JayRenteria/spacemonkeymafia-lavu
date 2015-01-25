@@ -141,13 +141,19 @@ label {
 	margin-left: -2px;
 	top: 0;
 }
+
+#clock #hour:after,
+#clock #minute:after,
+#clock #second:after {
+	background: #999;
+}
+
 #clock #hour:after {
 	content: "";
 	display: block;
 	position: absolute;
-	height: 30%;
+	height: 24%;
 	width: 100%;
-	background: #99bc08;
 	bottom: 50%;
 }
 #clock #minute {
@@ -161,10 +167,9 @@ label {
 #clock #minute:after {
 	content: "";
 	display: block;
-	positioN: absolute;
-	height: 35%;
+	position: absolute;
+	height: 30%;
 	width: 100%;
-	background: #99bc08;
 	bottom: 50%;
 }
 #clock #second {
@@ -178,9 +183,8 @@ label {
 	content: "";
 	display: block;
 	positioN: absolute;
-	height: 40%;
+	height: 32%;
 	width: 100%;
-	background: #99bc08;
 	bottom: 50%;
 }
 .hr12 {
@@ -259,6 +263,10 @@ label {
 /* TABLE */
 table.table {
 	border: 1px solid #99bc08;
+}
+
+table.table tr td:not(:first-child) {
+	text-align: center;
 }
 
 @media screen and (max-width: 768px) {
