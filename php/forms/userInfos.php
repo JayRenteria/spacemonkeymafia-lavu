@@ -1,5 +1,5 @@
 <div class="border-wrapper">
-	<form id="guestForm" action="php/forms/validateUserInfos.php" method="post" onsubmit="event.preventDefault();" novalidate>
+	<form id="guestForm" action="php/forms/validateUserInfos.php" method="post" novalidate>
 
 	<!-- forms for customer name, email, phone number and a date selection/time dropdown-->
 		<div class="group">

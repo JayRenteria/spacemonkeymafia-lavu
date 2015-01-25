@@ -289,6 +289,7 @@ class Reservation {
 		// verify email is valid
 		$newEmail = trim($newEmail);
 		$newEmail = filter_var($newEmail, FILTER_VALIDATE_EMAIL);
+		echo 'newMail:'.$newEmail;
 		if(empty($newEmail) === true) {
 			throw(new InvalidArgumentException("email content is empty or insecure"));
 		}
@@ -498,6 +499,7 @@ public static function getReservations(&$mysqli, $reservationDate=null, $reserva
 			throw(new mysqli_sql_exception($exception->getMessage(), 0, $exception));
 		}
 	}
+
 	return($reservations);
 }
 }
