@@ -48,6 +48,8 @@
 
 	<input type="submit" value="Reserve!" class="btn btn-default">
 
+
+
 </form>
 
 <!-- Manage the input from the user -->
