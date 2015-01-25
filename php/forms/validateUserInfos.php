@@ -61,17 +61,17 @@ try {
 	echo "Exception: " . $exception->getMessage() . "<br/>";
 	echo $exception->getFile() .":" . $exception->getLine();
 }
-echo "done!";
+//echo "done!";
 
-//echo json_encode(
-//	array(
-//		'name' => 'TODO: returName',
-//		'email' => 'TODO: returName',
-//		'phone' => 'TODO: returName',
-//		'date' => 'TODO: returName',
-//		'time' => 'TODO: returName',
-//	)
-//);
+echo json_encode(
+	array(
+		'name' => $reservation->getGuestName(),
+		'email' => $_POST['email'],
+		'phone' => $_POST['phone'],
+		'date' => $_POST['date'],
+		'time' => $_POST['time'],
+	)
+);
 
 
 ?>

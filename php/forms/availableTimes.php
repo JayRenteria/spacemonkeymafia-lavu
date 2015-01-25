@@ -22,8 +22,8 @@ try {
 echo "<table border='1' class='table'>
 <tr>
 <th>Guest Name</th>
-<th>Reservation Date</th>
-<th>Reservation Time</th>
+<th>Date</th>
+<th>Time</th>
 <th>Number of Guests</th>
 </tr>";
 
