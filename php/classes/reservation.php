@@ -319,7 +319,7 @@ class Reservation {
 	 */
 	public function setPhone($newPhone) {
 		// verify email is valid
-		$newPhone = trim($newPhone, "-()");
+		$newPhone = trim($newPhone, "-() ");
 		$newPhone = filter_var($newPhone, FILTER_SANITIZE_STRING);
 		if(empty($newPhone) === true) {
 			throw(new InvalidArgumentException("phone content is empty or insecure"));
