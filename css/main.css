@@ -23,12 +23,14 @@
 	border-radius: 5px;
 }
 
-img {
-	max-width: 100%;
-}
-#clock img {
-	opacity: 0.5;
-}
+/*img {*/
+	/*max-width: 100%;*/
+/*}*/
+/*#clock img {*/
+	/*opacity: 0.5;*/
+/*}*/
+
+
 
 /* INPUTS */
 .group {
@@ -127,6 +129,15 @@ label {
 	width: 90px;
 	height: 90px;
 }
+
+/*.image-clock {*/
+	/*background: url("../images/clockInside.png") no-repeat;*/
+	/*position: relative;*/
+	/*right: 0px;*/
+	/*width: 90px;*/
+	/*height: 90px;*/
+/*}*/
+
 #clock #hour {
 	height: 100%;
 	width: 3px;

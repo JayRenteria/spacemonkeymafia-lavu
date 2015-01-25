@@ -1,7 +1,6 @@
 <?php
 // available times
 // availableTimes
-
 require_once("php/misc/config.php");
 require_once("php/classes/reservation.php");
 
