@@ -3,7 +3,9 @@
 	margin-left: 2em;
 	margin-right: 2em;
 }
-
+/*[class^="col-"] {*/
+	/*border: 1px solid black;*/
+/*}*/
 /* INPUTS */
 .group {
 	position: relative;
