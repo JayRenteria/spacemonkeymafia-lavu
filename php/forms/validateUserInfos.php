@@ -33,7 +33,7 @@ $time = $hours . ':'. $minutes . ':00';
 $date = $_POST["date"]. ' ' . $time;
 
 // user the constructor to create an object
-$reservation = new Reservation($date, $time, $count, $_POST["name"], $_POST["numberOfGuests"]);
+$reservation = new Reservation($date, $time, $count, $_POST["name"], $_POST["numberOfGuests"], $_POST["email"], $_POST["phone"]);
 
 //
 // connect to mySQL and populate the database
