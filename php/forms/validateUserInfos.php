@@ -4,7 +4,7 @@
 
 
 // first, require your class
-require_once("../misc/reservation.php");
+require_once("../classes/reservation.php");
 $count = 2;
 
 //var_dump(explode("-", $_POST["date"]));

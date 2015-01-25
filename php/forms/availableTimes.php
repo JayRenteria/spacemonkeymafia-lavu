@@ -2,7 +2,7 @@
 // available times
 // availableTimes
 
-require_once("php/misc/reservation.php");
+require_once("php/classes/reservation.php");
 
 $reservations = null;
 
