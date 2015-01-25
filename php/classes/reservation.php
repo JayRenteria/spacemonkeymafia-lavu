@@ -315,7 +315,7 @@ class Reservation {
 	 *
 	 * @param string $newPhone new guest phone number
 	 * @throws InvalidArgumentException if $newPhone is not a string or insecure,
-	 * @throws RangeException if $newPhone is > 9 characters
+	 * @throws RangeException if $newPhone is > 10 characters
 	 */
 	public function setPhone($newPhone) {
 		// verify email is valid
@@ -325,8 +325,8 @@ class Reservation {
 			throw(new InvalidArgumentException("phone content is empty or insecure"));
 		}
 
-		// verify email does not exceed 9 characters
-		if(strlen($newPhone) > 9) {
+		// verify email does not exceed 10 characters
+		if(strlen($newPhone) > 10) {
 			throw(new RangeException("phone content too large"));
 		}
 
