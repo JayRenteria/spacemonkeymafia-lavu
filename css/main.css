@@ -1,13 +1,27 @@
+.container-fluid {
+	margin-top: 30px;
+	margin-left: 2em;
+	margin-right: 2em;
+}
 
+/* INPUTS */
 .group {
 	position: relative;
-	margin-bottom: 45px;
+	margin-bottom: 20px;
 }
+input,
+select {
+	width: 300px !important;
+}
+
+select:focus {
+	outline-color: #99bc08;
+}
+
 input {
 	font-size: 18px;
 	padding: 10px 10px 10px 5px;
 	display: block;
-	width: 300px;
 	border: none;
 	border-bottom: 1px solid #757575;
 }
@@ -15,11 +29,10 @@ input:focus {
 	outline: none;
 }
 /* LABEL position and transition */
-input:focus ~ label,
-input:valid ~ label {
+input:focus ~ label {
 	top: -20px;
 	font-size: 14px;
-	color: #5264AE;
+	color: #99bc08;
 }
 label {
 	color: #999;
@@ -27,6 +40,186 @@ label {
 	font-weight: normal;
 	position: absolute;
 	left: 5px;
-	top: 10px;
+	top: 20px;
 	transition: 0.2s ease all;
+}
+
+/* DATE */
+input[type="date"]:before {
+	content: attr(placeholder);
+	color: #aaa;
+}
+
+input[type="date"]:focus:before, input[type="date"]:valid:before {
+	content: "";
+}
+
+/* LIST */
+.list-group-item:hover {
+	background-color: #bce8f1;
+}
+
+/* CLOCK */
+/* Pure CSS3 without any images */
+
+/* Math functions */
+/* Clock */
+
+#clock,
+#clock ul {
+	height: 200px;
+	width: 200px;
+	margin-left: auto;
+	margin-right: auto;
+}
+#clock ul .hour {
+	position: absolute;
+	height: 190px;
+	top: 10px;
+	left: 90px;
+	font-size: 0.8em;
+}
+
+.clock-image {
+	position: relative;
+	right: 0px;
+	width: 200px;
+	height: 200px;
+}
+
+#clock {
+	/*height: 400px;*/
+	/*width: 400px;*/
+	position: relative;
+	top: 50%;
+}
+/*#clock ul {*/
+	/*height: 400px;*/
+	/*width: 400px;*/
+	/*border-radius: 50%;*/
+/*}*/
+/*#clock ul .hour span {*/
+	/*display: inline-block;*/
+/*}*/
+#clock #hour {
+	height: 100%;
+	width: 4px;
+	position: absolute;
+	left: 50%;
+	margin-left: -2px;
+	top: 0;
+}
+#clock #hour:after {
+	content: "";
+	display: block;
+	positioN: absolute;
+	height: 30%;
+	width: 100%;
+	background: #99bc08;
+	bottom: 50%;
+}
+#clock #minute {
+	height: 100%;
+	width: 2px;
+	position: absolute;
+	left: 50%;
+	margin-left: -1px;
+	top: 0;
+}
+#clock #minute:after {
+	content: "";
+	display: block;
+	positioN: absolute;
+	height: 35%;
+	width: 100%;
+	background: #99bc08;
+	bottom: 50%;
+}
+#clock #second {
+	height: 100%;
+	width: 1px;
+	position: absolute;
+	left: 50%;
+	top: 0;
+}
+#clock #second:after {
+	content: "";
+	display: block;
+	positioN: absolute;
+	height: 40%;
+	width: 100%;
+	background: #99bc08;
+	bottom: 50%;
+}
+.hr12 {
+	transform: rotate(360deg);
+}
+.hr12 span {
+	transform: rotate(-360deg);
+}
+.hr11 {
+	transform: rotate(330deg);
+}
+.hr11 span {
+	transform: rotate(-330deg);
+}
+.hr10 {
+	transform: rotate(300deg);
+}
+.hr10 span {
+	transform: rotate(-300deg);
+}
+.hr9 {
+	transform: rotate(270deg);
+}
+.hr9 span {
+	transform: rotate(-270deg);
+}
+.hr8 {
+	transform: rotate(240deg);
+}
+.hr8 span {
+	transform: rotate(-240deg);
+}
+.hr7 {
+	transform: rotate(210deg);
+}
+.hr7 span {
+	transform: rotate(-210deg);
+}
+.hr6 {
+	transform: rotate(180deg);
+}
+.hr6 span {
+	transform: rotate(-180deg);
+}
+.hr5 {
+	transform: rotate(150deg);
+}
+.hr5 span {
+	transform: rotate(-150deg);
+}
+.hr4 {
+	transform: rotate(120deg);
+}
+.hr4 span {
+	transform: rotate(-120deg);
+}
+.hr3 {
+	transform: rotate(90deg);
+}
+.hr3 span {
+	transform: rotate(-90deg);
+}
+.hr2 {
+	transform: rotate(60deg);
+}
+.hr2 span {
+	transform: rotate(-60deg);
+}
+.hr1 {
+	transform: rotate(30deg);
+}
+.hr1 span {
+	transform: rotate(-30deg);
 }
