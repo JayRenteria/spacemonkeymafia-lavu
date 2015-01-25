@@ -57,15 +57,15 @@ try {
 	echo $exception->getFile() .":" . $exception->getLine();
 }
 
-echo json_encode(
-	array(
-		'name' => $reservation->getGuestName(),
-		'email' => $_POST['email'],
-		'phone' => $_POST['phone'],
-		'date' => $_POST['date'],
-		'time' => $_POST['time'],
-	)
-);
+//echo json_encode(
+//	array(
+//		'name' => $reservation->getGuestName(),
+//		'email' => $_POST['email'],
+//		'phone' => $_POST['phone'],
+//		'date' => $_POST['date'],
+//		'time' => $_POST['time'],
+//	)
+//);
 
 
 ?>

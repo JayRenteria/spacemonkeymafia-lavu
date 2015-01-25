@@ -498,6 +498,7 @@ public static function getReservations(&$mysqli, $reservationDate=null, $reserva
 			throw(new mysqli_sql_exception($exception->getMessage(), 0, $exception));
 		}
 	}
+
 	return($reservations);
 }
 }

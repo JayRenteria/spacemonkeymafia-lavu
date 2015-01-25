@@ -31,24 +31,35 @@ echo "<table border='1' class='table'>
 <th>Phone</th>
 </tr>";
 
-foreach($reservations as $reservation) {
-	$newDate = explode(" ", $reservation->getReservationDate()->format('m-d-Y'));
-	$newDate = $newDate[0];
-	$time = $reservation->getReservationTime();
+if($reservations !== null && empty($reservations) === false) {
+	foreach($reservations as $reservation) {
+		$newDate = explode(" ", $reservation->getReservationDate()->format('m-d-Y'));
+		$newDate = $newDate[0];
+		$time = $reservation->getReservationTime();
 
-	$newTime = date('h:i:s a', strtotime($reservation->getReservationTime()));
-	$areaCode = substr($reservation->getPhone(), 0, 3);
-	$firstThree = substr($reservation->getPhone(), 3, 3);
-	$lastFour = substr($reservation->getPhone(), 6, 4);
-	$newPhone = $areaCode . " " . $firstThree . " " . $lastFour;
-	echo "<tr>";
-	echo "<td>" . $reservation->getGuestName() . "</td>";
-	echo "<td>" . $newDate . "</td>";
-	echo "<td>" . $newTime . "</td>";
-	echo "<td>" . $reservation->getNumOfGuests() . "</td>";
-	echo "<td>" . $newPhone . "</td>";
-	echo "</tr>";
+		$newTime = date('h:i:s a', strtotime($reservation->getReservationTime()));
+		$areaCode = substr($reservation->getPhone(), 0, 3);
+		$firstThree = substr($reservation->getPhone(), 3, 3);
+		$lastFour = substr($reservation->getPhone(), 6, 4);
+		$newPhone = $areaCode . " " . $firstThree . " " . $lastFour;
+		echo "<tr>";
+		echo "<td>" . $reservation->getGuestName() . "</td>";
+		echo "<td>" . $newDate . "</td>";
+		echo "<td>" . $newTime . "</td>";
+		echo "<td>" . $reservation->getNumOfGuests() . "</td>";
+		echo "<td>" . $newPhone . "</td>";
+		echo "</tr>";
+	}
+} else {
+	echo '<tr>';
+		echo '<td></td>';
+		echo '<td></td>';
+		echo '<td></td>';
+		echo '<td></td>';
+		echo '<td></td>';
+	echo '</tr>';
 }
+
 echo "</table>";
 
 ?>
