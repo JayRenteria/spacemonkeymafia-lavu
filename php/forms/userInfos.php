@@ -1,4 +1,4 @@
-<form id="guestForm" action="" method="post" onsubmit="event.preventDefault();" novalidate >
+<form id="guestForm" action="validateUserInfos.php" method="post" novalidate>
 
 <!-- forms for customer name, email, phone number and a date selection/time dropdown-->
 	<div class="group">
@@ -47,10 +47,20 @@
 	</div>
 
 	<input type="submit" value="Reserve!" class="btn btn-default">
-
-
-
 </form>
+
+
+<div id="reservationConfirmationCard">
+	<h2>Reservation done!</h2>
+	<br/>
+	<div id="ajaxResponse">
+		<p>Name:</p>
+		<p>Email:</p>
+		<p>Phone:</p>
+		<p>Date:</p>
+		<p>Time:</p>
+	</div>
+</div>
 
 <!-- Manage the input from the user -->
 <?php
