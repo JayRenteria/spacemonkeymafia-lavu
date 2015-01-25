@@ -1,23 +1,38 @@
-<form action="" method="post" novalidate>
+<form id="guestForm" action="php/forms/validateUserInfos.php" method="post" novalidate>
 
 <!-- forms for customer name, email, phone number and a date selection/time dropdown-->
 	<div class="group">
-		<input type="text" name="name">
+		<input id="guestName" type="text" name="name">
 		<label>Name</label>
 	</div>
 	<div class="group">
-		<input type="text" name="email">
+		<input id="guestEmail" type="text" name="email">
 		<label>Email</label>
 	</div>
 	<div class="group">
-		<input type="text" name="phone">
+		<input id="guestPhone" type="text" name="phone">
 		<label>Phone</label>
 	</div>
 	<div class="group">
-		<input type="date" name="date" value="Select a Date"><br>
+		<input id="guestDate" type="date" name="date" value="Select a Date"><br>
 	</div>
 	<div class="group">
-		<select name="Time" class="form-control">
+		<select id="numberOfGuests" name="numberOfGuests" class="form-control">
+			<option value="">How many guests?</option>
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+		</select>
+	</div>
+	<div class="group">
+		<select id="guestTime" name="time" class="form-control">
 			<option value="">Select a Time</option>
 			<option value="7:00AM">7:00AM</option>
 			<option value="7:30AM">7:30AM</option>
@@ -47,8 +62,20 @@
 	</div>
 
 	<input type="submit" value="Reserve!" class="btn btn-default">
-
 </form>
+
+
+<div id="reservationConfirmationCard">
+	<h2>Reservation done!</h2>
+	<br/>
+	<div id="ajaxResponse">
+		<p>Name:</p>
+		<p>Email:</p>
+		<p>Phone:</p>
+		<p>Date:</p>
+		<p>Time:</p>
+	</div>
+</div>
 
 <!-- Manage the input from the user -->
 <?php
