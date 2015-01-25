@@ -31,7 +31,7 @@ echo "<table border='1' class='table'>
 <th>Phone</th>
 </tr>";
 
-if($reservations !== null) {
+if($reservations !== null && empty($reservations) === false) {
 	foreach($reservations as $reservation) {
 		$newDate = explode(" ", $reservation->getReservationDate()->format('m-d-Y'));
 		$newDate = $newDate[0];

@@ -289,7 +289,6 @@ class Reservation {
 		// verify email is valid
 		$newEmail = trim($newEmail);
 		$newEmail = filter_var($newEmail, FILTER_VALIDATE_EMAIL);
-		echo 'newMail:'.$newEmail;
 		if(empty($newEmail) === true) {
 			throw(new InvalidArgumentException("email content is empty or insecure"));
 		}
