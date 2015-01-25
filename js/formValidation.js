@@ -3,19 +3,21 @@ var $email = $("#guestEmail");
 var $phone = $("#guestPhone");
 var $date = $("#guestDate");
 var $time = $("#guestTime");
+var $numberOfGuests = $("#numberOfGuests");
 
 $("#guestForm").on("submit", function() {
-	signup_submit();
+	guestSubmit();
 });
 
-function signup_submit() {
-	var url = "php/forms/validationUserInfos.php";
+function guestSubmit() {
+	var url = "php/forms/validateUserInfos.php";
 	var data = {
 		name: $name.val(),
 		email: $email.val(),
 		phone: $phone.val(),
 		date: $date.val(),
-		time: $time.val()
+		time: $time.val(),
+		numberOfGuests: $numberOfGuests.val()
 	}
 
 	// TODO: validation if some time available

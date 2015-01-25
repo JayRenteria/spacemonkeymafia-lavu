@@ -19,6 +19,10 @@
 	border-radius: 5px;
 }
 
+img {
+	max-width: 100%;
+}
+
 /* INPUTS */
 .group {
 	position: relative;
@@ -26,16 +30,23 @@
 }
 input,
 select {
-	width: 300px !important;
+	width: 100% !important;
+}
+
+input[type=text] {
+	font-size: 18px;
 }
 
 input {
-	font-size: 18px;
 	padding: 10px 10px 10px 5px;
 	display: block;
 	border: none;
 	border-bottom: 1px solid #757575;
 }
+/*input[type=date] {*/
+	/*font*/
+/*}*/
+
 input:focus {
 	outline: none;
 }

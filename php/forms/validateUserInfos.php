@@ -1,21 +1,13 @@
 <?php
 
 // first, require your class
-echo getcwd();
 require_once("../misc/reservation.php");
 $count = 2;
 
-
-// TOD
-//var_dump($_POST);
-
-// Format the time correctly
-// yyyy-mm-dd
 //var_dump(explode("-", $_POST["date"]));
 // h:i:s
 $timeExploded = explode(":", $_POST["time"]);
 
-//var_dump($_POST["time"]);
 $hours = $timeExploded[0];
 // get the minutes with AM
 if(strlen($hours) < 2) {
@@ -35,8 +27,7 @@ if(strpos($minutes,'AM')) {
 //var_dump($minutes);
 $time = $hours . ':'. $minutes . ':00';
 $date = $_POST["date"]. ' ' . $time;
-var_dump($date);
-var_dump($time);
+
 // user the constructor to create an object
 $reservation = new Reservation($date, $time, $count, $_POST["name"], $_POST["numberOfGuests"]);
 
@@ -47,7 +38,7 @@ try {
 	mysqli_report(MYSQLI_REPORT_STRICT);
 
 	// now go ahead and connect
-	$mysqli = new mysqli("localhost", 'nlopez', 'cedaraoshorerhinedrill', 'nlopez');
+	$mysqli = new mysqli("localhost", '', '', '');
 
 	// now, insert into mySQL
 	$reservation->insert($mysqli);
