@@ -12,7 +12,7 @@ try {
 	mysqli_report(MYSQLI_REPORT_STRICT);
 
 	// now go ahead and connect
-	$mysqli = new mysqli("localhost", '', '', '');
+	$mysqli = new mysqli("localhost", 'nlopez', 'cedaraoshorerhinedrill', 'nlopez');
 
 	// get the reservations
 	$reservations = Reservation::getReservations($mysqli);
@@ -39,10 +39,11 @@ foreach($reservations as $reservation) {
 //  if($time < date('h:i:s', date("h:i:s") - 60 * 60 * 2)) {
 //    continue;
 //  }
+	$newTime = date('h:i:s a', strtotime($reservation->getReservationTime()));
 	echo "<tr>";
 	echo "<td>" . $reservation->getGuestName() . "</td>";
 	echo "<td>" . $newDate . "</td>";
-	echo "<td>" . $reservation->getReservationTime() . "</td>";
+	echo "<td>" . $newTime . "</td>";
 	echo "<td>" . $reservation->getNumOfGuests() . "</td>";
 	echo "</tr>";
 }

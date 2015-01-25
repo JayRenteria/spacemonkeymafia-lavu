@@ -23,18 +23,20 @@ function guestSubmit() {
 	// TODO: validation if some time available
 
 	data.submit = true;
-
+	console.log("debug");
 	$.post( url, data, function( response ) {
-		//if( response.valid === false ) {
-		//} else {
-		//	$("#guestForm").hide();
-		//	$("#reservationConfirmationCard").show();
-		//	$("#ajaxResponse p:nth-child(1)").html(response["name"]);
-		//	$("#ajaxResponse p:nth-child(2)").html(response["email"]);
-		//	$("#ajaxResponse p:nth-child(3)").html(response["phone"]);
-		//	$("#ajaxResponse p:nth-child(4)").html(response["date"]);
-		//	$("#ajaxResponse p:nth-child(5)").html(response["name"]);
-		//}
+		if( response.valid === false ) {
+			console.log("response invalid");
+		} else {
+			console.log("response valid");
+			$("#guestForm").hide();
+			$("#reservationConfirmationCard").show();
+			$("#ajaxResponse p:nth-child(1)").html(response["name"]);
+			$("#ajaxResponse p:nth-child(2)").html(response["email"]);
+			$("#ajaxResponse p:nth-child(3)").html(response["phone"]);
+			$("#ajaxResponse p:nth-child(4)").html(response["date"]);
+			$("#ajaxResponse p:nth-child(5)").html(response["name"]);
+		}
 	}, "json" ).fail( function(  xhr, status, error ) {
 		console.error( xhr.responseText );
 	});
