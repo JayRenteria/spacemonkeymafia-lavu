@@ -1,17 +1,10 @@
-<?php
-$guestTables = array(
-	array("Table 1", 2),
-	array("Table 2", 2),
-	array("Table 3", 4),
-	array("Table 4", 4),
-	array("Table 5", 6),
-);
+
 
 /**
 *
-* This is an example of a reservation table service design for a restaurant reservation application
+* This is the reservation table service design for a restaurant reservation application
 *
-* @author David Fevig <davidfevig1@davidfevig.com>
+* @author Space Monkey Mafia
 **/
 class GuestTables {
 	/**
