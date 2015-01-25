@@ -4,6 +4,7 @@
 
 
 // first, require your class
+require_once("../misc/config.php");
 require_once("../classes/reservation.php");
 $count = 2;
 
@@ -32,7 +33,7 @@ $time = $hours . ':'. $minutes . ':00';
 $date = $_POST["date"]. ' ' . $time;
 
 // user the constructor to create an object
-$reservation = new Reservation($date, $time, $count, $_POST["name"], $_POST["numberOfGuests"]);
+$reservation = new Reservation($date, $time, $count, $_POST["name"], $_POST["numberOfGuests"], $_POST["email"], $_POST["phone"]);
 
 //
 // connect to mySQL and populate the database
@@ -41,7 +42,7 @@ try {
 	mysqli_report(MYSQLI_REPORT_STRICT);
 
 	// now go ahead and connect
-	$mysqli = new mysqli("localhost", 'nlopez', '', 'nlopez');
+	$mysqli = new mysqli("localhost", USER_NAME, USER_PASS, USER_NAME);
 
 	// now, insert into mySQL
 	$reservation->insert($mysqli);

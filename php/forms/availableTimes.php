@@ -2,6 +2,7 @@
 // available times
 // availableTimes
 
+require_once("php/misc/config.php");
 require_once("php/classes/reservation.php");
 
 $reservations = null;
@@ -12,7 +13,7 @@ try {
 	mysqli_report(MYSQLI_REPORT_STRICT);
 
 	// now go ahead and connect
-	$mysqli = new mysqli("localhost", 'nlopez', '', 'nlopez');
+	$mysqli = new mysqli("localhost", USER_NAME, USER_PASS, USER_NAME);
 
 	// get the reservations
 	$reservations = Reservation::getReservations($mysqli);
@@ -27,6 +28,7 @@ echo "<table border='1' class='table'>
 <th>Date</th>
 <th>Time</th>
 <th>Number of Guests</th>
+<th>Phone</th>
 </tr>";
 //echo date('m-d-Y h:i:s') . "<br>";
 //echo date('m-d-Y h:i:s', date("m-d-Y h:i:s") - 60 * 60 * 2);
@@ -45,6 +47,7 @@ foreach($reservations as $reservation) {
 	echo "<td>" . $newDate . "</td>";
 	echo "<td>" . $newTime . "</td>";
 	echo "<td>" . $reservation->getNumOfGuests() . "</td>";
+	echo "<td>" . $reservation->getPhone() . "</td>";
 	echo "</tr>";
 }
 echo "</table>";
