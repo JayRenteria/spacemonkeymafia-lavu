@@ -16,11 +16,21 @@ $timeExploded = explode(":", $_POST["time"]);
 //var_dump($_POST["time"]);
 $hours = $timeExploded[0];
 // get the minutes with AM
+if(strlen($hours) < 2) {
+	$hours = '0' . $hours;
+}
+
 $minutes = $timeExploded[1];
-// Get rid of AM
+// Get rid of AM and PM
 $minutes = explode("AM", $minutes)[0];
-//var_dump($minutes);
+
 // set the time
+if(strpos($minutes,'AM')) {
+	$minutes = explode("AM", $minutes)[0];
+} else {
+	$minutes = explode("PM", $minutes)[0];
+}
+//var_dump($minutes);
 $time = $hours . ':'. $minutes . ':00';
 $date = $_POST["date"]. ' ' . $time;
 var_dump($date);
@@ -35,7 +45,7 @@ $reservation = new Reservation($date, $time, $count, $_POST["name"], $_POST["num
 //	mysqli_report(MYSQLI_REPORT_STRICT);
 //
 //	// now go ahead and connect
-//
+//	$mysqli = new mysqli("localhost", '', '', '');
 //
 //	// now, insert into mySQL
 //	$reservation->insert($mysqli);
