@@ -1,4 +1,4 @@
-<form id="guestForm" action="validateUserInfos.php" method="post" novalidate>
+<form id="guestForm" action="php/forms/validateUserInfos.php" method="post" novalidate>
 
 <!-- forms for customer name, email, phone number and a date selection/time dropdown-->
 	<div class="group">
@@ -32,7 +32,7 @@
 		</select>
 	</div>
 	<div class="group">
-		<select id="guestTime" name="Time" class="form-control">
+		<select id="guestTime" name="time" class="form-control">
 			<option value="">Select a Time</option>
 			<option value="7:00AM">7:00AM</option>
 			<option value="7:30AM">7:30AM</option>
