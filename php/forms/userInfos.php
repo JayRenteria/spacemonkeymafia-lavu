@@ -34,6 +34,29 @@
 		</div>
 		<div class="group">
 			<select id="guestTime" name="time" class="form-control">
+				<?php
+
+				require_once("php/misc/config.php");
+				require_once("php/classes/reservation.php");
+
+				$reservations = null;
+
+				//connect to mySQL and populate the database
+				try {
+					// tell mysqli to throw exceptions
+					mysqli_report(MYSQLI_REPORT_STRICT);
+
+					// now go ahead and connect
+					$mysqli = new mysqli("localhost", USER_NAME, USER_PASS, USER_NAME);
+
+					// get the reservations
+					$reservations = Reservation::getReservations($mysqli);
+				} catch(Exception $exception) {
+					echo "Exception: " . $exception->getMessage() . "<br/>";
+					echo $exception->getFile() .":" . $exception->getLine();
+				}
+
+				?>
 				<option value="">Select a Time</option>
 				<option value="7:00AM">7:00AM</option>
 				<option value="7:30AM">7:30AM</option>

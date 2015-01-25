@@ -2,6 +2,7 @@
 // available times
 // availableTimes
 
+require_once("php/misc/config.php");
 require_once("php/classes/reservation.php");
 
 $reservations = null;
@@ -12,7 +13,7 @@ try {
 	mysqli_report(MYSQLI_REPORT_STRICT);
 
 	// now go ahead and connect
-	$mysqli = new mysqli("localhost", 'nlopez', '', 'nlopez');
+	$mysqli = new mysqli("localhost", USER_NAME, USER_PASS, USER_NAME);
 
 	// get the reservations
 	$reservations = Reservation::getReservations($mysqli);
