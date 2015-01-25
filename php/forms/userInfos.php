@@ -17,7 +17,7 @@
 		<input id="guestDate" type="date" name="date" value="Select a Date"><br>
 	</div>
 	<div class="group">
-		<select id="numberOfGuests" name="number of guests" class="form-control">
+		<select id="numberOfGuests" name="numberOfGuests" class="form-control">
 			<option value="">How many guests?</option>
 			<option value="1">1</option>
 			<option value="2">2</option>

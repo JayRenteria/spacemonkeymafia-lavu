@@ -5,26 +5,28 @@ echo getcwd();
 require_once("../misc/reservation.php");
 $count = 2;
 
-var_dump($_POST);
+//var_dump($_POST);
 
 // Format the time correctly
 // yyyy-mm-dd
 //var_dump(explode("-", $_POST["date"]));
 // h:i:s
-$timeExploded = explode("-", $_POST["time"]);
+$timeExploded = explode(":", $_POST["time"]);
 
-var_dump($_POST["time"]);
-//var_dump($timeExploded);
+//var_dump($_POST["time"]);
 $hours = $timeExploded[0];
 // get the minutes with AM
 $minutes = $timeExploded[1];
 // Get rid of AM
-$minutes = explode("AM", $minutes);
+$minutes = explode("AM", $minutes)[0];
+//var_dump($minutes);
 // set the time
-$time = $_POST["date"] .' '. $hours . ':'. $minutes . ':00';
+$time = $hours . ':'. $minutes . ':00';
+$date = $_POST["date"]. ' ' . $time;
+var_dump($date);
 var_dump($time);
 // user the constructor to create an object
-//$reservation = new Reservation($_POST["date"], $_POST["time"], $count, $_POST["name"], $_POST["numberOfGuest"]);
+$reservation = new Reservation($date, $time, $count, $_POST["name"], $_POST["numberOfGuests"]);
 
 //
 // connect to mySQL and populate the database
