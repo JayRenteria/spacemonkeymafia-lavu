@@ -100,13 +100,13 @@ label {
 
 #clock,
 #clock ul {
-	height: 200px;
-	width: 200px;
-	display: inline-block;
+	max-width: 100%;
+	height: auto;
+	display: block;
 }
 #clock ul .hour {
 	position: absolute;
-	height: 190px;
+	height: auto;
 	top: 10px;
 	left: 90px;
 	font-size: 0.8em;
@@ -135,7 +135,7 @@ label {
 /*}*/
 #clock #hour {
 	height: 100%;
-	width: 4px;
+	width: 3px;
 	position: absolute;
 	left: 50%;
 	margin-left: -2px;
@@ -144,7 +144,7 @@ label {
 #clock #hour:after {
 	content: "";
 	display: block;
-	positioN: absolute;
+	position: absolute;
 	height: 30%;
 	width: 100%;
 	background: #99bc08;
