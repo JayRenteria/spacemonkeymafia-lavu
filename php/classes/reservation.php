@@ -287,6 +287,7 @@ class Reservation {
 	 */
 	public function setEmail($newEmail) {
 		// verify email is valid
+//		echo 'newEmail:'. $newEmail;
 		$newEmail = trim($newEmail);
 		$newEmail = filter_var($newEmail, FILTER_VALIDATE_EMAIL);
 		if(empty($newEmail) === true) {
