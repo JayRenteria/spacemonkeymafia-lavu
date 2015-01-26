@@ -8,10 +8,7 @@ reservationDate DATETIME,
 	guestName VARCHAR(25),
 	numOfGuests INT UNSIGNED,
 	phone VARCHAR(10),
-	email VARCHAR(65),
-	tableId INT UNSIGNED,
-	INDEX(tableId),
-	FOREIGN KEY (tableId) REFERENCES guestTable(tableId)
+	email VARCHAR(65)
 );
 
 CREATE TABLE guestTable (
